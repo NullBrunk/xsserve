@@ -1,6 +1,6 @@
 <div align="center">
 
-# XSServe
+# xsserve
 
 ![GitHub top language](https://img.shields.io/github/languages/top/NullBrunk/XSServe?style=for-the-badge)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/NullBrunk/XSServe?style=for-the-badge)
