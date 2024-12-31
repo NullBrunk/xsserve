@@ -3,8 +3,8 @@ from mimetypes import guess_type
 from termcolor import colored
 from os.path import abspath
 from os import listdir
+from re import search
 import socket
-import re
 
 class HttpServer:
     def __init__(this, port):
@@ -66,7 +66,7 @@ class HttpServer:
                 info("served file " + colored(path, "red"), True)
 
             elif method == "GET" and path.startswith("/?cookie"):
-                match = re.search(r"cookie=([^ ]+)", path)
+                match = search(r"cookie=([^ ]+)", path)
                 info("received cookie: " + colored(match.group(1), "red"), True)
                 info("sending a 200 OK reponse")
                 response = b"HTTP/1.1 200 OK"

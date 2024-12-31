@@ -1,5 +1,5 @@
-from termcolor import colored 
-from time import strftime 
+from termcolor import colored
+from time import strftime
 
 def abstract_log(text: str, color: str, log_text:str, important: bool = False, date_color: str = "light_blue"):
     attrs = []

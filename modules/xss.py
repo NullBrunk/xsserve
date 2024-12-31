@@ -1,11 +1,15 @@
-from modules.logger import info, warning, error, critical 
+from modules.logger import info, warning, error, critical
+from netifaces import interfaces, AF_INET, ifaddresses
 from modules.httpserver import HttpServer
 from modules.ngrok import ngrok, killer
-import netifaces
+
 
 class XSS:
-    def __init__(this) -> None:
+    def __init__(this):
         pass
+
+    def filter_interfaces(this, value):
+        return not value.startswith("br-") and not value.startswith("docker") and not value == "lo"
 
     def ngrok_launcher(this, port):
         this.pub_ip = ngrok(port)
@@ -37,7 +41,10 @@ class XSS:
         except:
             killer()
         info(f"listening on {this.pub_ip}", True)
-        info(f"listening on http://0.0.0.0:{port}/", True)
-            
-            
+
+
+        for inet in filter(this.filter_interfaces, interfaces()):
+            iface_ip = ifaddresses("wlo1")[AF_INET][0]["addr"]
+            info(f"listening on http://{iface_ip}:{port}/", True)
+
         this.http_launcher(port)
