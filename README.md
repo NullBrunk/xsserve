@@ -28,8 +28,8 @@ Ideal for pentesters, security researchers, and cybersecurity enthusiasts who ne
 > The script requires ngrok
 
 ```bash
-git clone https://github.com/NullBrunk/XSServe
-cd XSServe
+git clone https://github.com/NullBrunk/xsserve
+cd xsserve
 
 # Install the needed requirements
 pip install -r requirements.txt
