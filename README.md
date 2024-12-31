@@ -7,7 +7,7 @@
 ![repo size](https://img.shields.io/github/repo-size/NullBrunk/XSServe?style=for-the-badge)
 </div>
 
-![xsserve](https://github.com/user-attachments/assets/ba788344-952d-430f-8ace-fbc4d4de5369)
+![xsserve](https://github.com/user-attachments/assets/8ed817c2-2cc4-49f7-b86a-9286bfb2664e)
 
 
 ## 🚀 Usage
