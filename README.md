@@ -21,6 +21,7 @@ There are basically three endpoints:
 | `/FILENAME`          | Serves the file named `FILENAME` from the `files/` directory, like a standard HTTP server.    | 
 | `/?cookie=XXX`       | Only logs the value of `XXX`, useful for testing cookie capture scenarios.    |      
 | `/*`                 | Logs any access to other endpoints directly in your console, giving you full visibility into unexpected requests. |   
+
 Ideal for pentesters, security researchers, and cybersecurity enthusiasts who need a lightweight and versatile tool for XSS testing.
 
 
