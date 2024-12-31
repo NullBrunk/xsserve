@@ -1,5 +1,5 @@
 from modules.logger import info, warning, error, critical 
-from modules.webserver import WebServer
+from modules.httpserver import HttpServer
 from modules.ngrok import ngrok, killer
 import netifaces
 
@@ -18,10 +18,10 @@ class XSS:
 
         this.pub_ip = "http" + this.pub_ip[3:] + "/"
 
-    def webserver_launcher(this, port):
-        ws = WebServer(port)
+    def http_launcher(this, port):
+        hs = HttpServer(port)
         try:
-            ws.run()
+            hs.run()
         except Exception as e:
             critical("server error")
             print(e)
@@ -40,4 +40,4 @@ class XSS:
         info(f"listening on http://0.0.0.0:{port}/", True)
             
             
-        this.webserver_launcher(port)
+        this.http_launcher(port)

@@ -6,7 +6,7 @@ from os import listdir
 import socket
 import re
 
-class WebServer:
+class HttpServer:
     def __init__(this, port):
         this.HOST = '0.0.0.0'
         this.PORT = port
@@ -21,7 +21,7 @@ class WebServer:
             method, path = None, None
 
         return first_line, method, path
-    
+
     def is_shared_file(this, path):
         this.files_path = "/".join(abspath(__file__).split("/")[:-1]) + "/../files"
         shared_files = listdir(this.files_path)
@@ -30,13 +30,13 @@ class WebServer:
             return path[1:] in shared_files
 
         return path in shared_files
-        
+
 
     def run(this):
         this.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         this.server_socket.bind((this.HOST, this.PORT))
         this.server_socket.listen(5)
-    
+
 
         while True:
             client_socket, client_address = this.server_socket.accept()
@@ -68,7 +68,7 @@ class WebServer:
             elif method == "GET" and path.startswith("/?cookie"):
                 match = re.search(r"cookie=([^ ]+)", path)
                 info("received cookie: " + colored(match.group(1), "red"), True)
-                warning("sending a 200 OK reponse")
+                info("sending a 200 OK reponse")
                 response = b"HTTP/1.1 200 OK"
 
             elif method == "GET" and path.startswith("/favicon.ico"):
@@ -76,8 +76,8 @@ class WebServer:
 
             else:
                 warning("could not parse " + colored(first_line, "red"), True)
-                warning("sending a 200 OK reponse")
-                response = b"HTTP/1.1 200 OK\r\n\r\n"
+                warning("sending a 404 Not Found reponse")
+                response = b"HTTP/1.1 404 Not Found\r\n\r\n"
 
             client_socket.sendall(response)
             client_socket.close()
