@@ -7,6 +7,9 @@
 ![repo size](https://img.shields.io/github/repo-size/NullBrunk/XSServe?style=for-the-badge)
 </div>
 
+![xsserve](https://github.com/user-attachments/assets/ba788344-952d-430f-8ace-fbc4d4de5369)
+
+
 ## 🚀 Usage
 
 This tool simplifies XSS exploitation by combining a socket-based HTTP server with the power of ngrok. 
@@ -19,3 +22,15 @@ There are basically two endpoints
 
 Ideal for pentesters, security researchers, and cybersecurity enthusiasts who need a lightweight and versatile tool for XSS testing.
 
+
+## ⚒️ Installation
+>[!IMPORTANT]
+> The script requires ngrok
+
+```bash
+git clone https://github.com/NullBrunk/XSServe
+cd XSServe
+
+# Install the needed requirements
+pip install -r requirements.txt
+```
