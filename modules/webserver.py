@@ -63,18 +63,20 @@ class WebServer:
                         "Content-Length: " + str(len(content)) + "\r\n\r\n" 
                         + content
                     ).encode('utf-8')
-                info("served file " + colored(path, "red") + " to " + client_address[0], True)
+                info("served file " + colored(path, "red"), True)
 
             elif method == "GET" and path.startswith("/?cookie"):
                 match = re.search(r"cookie=([^ ]+)", path)
-                info("received cookie: " + colored(match.group(1), "red") + " from " + client_address[0], True)
+                info("received cookie: " + colored(match.group(1), "red"), True)
+                warning("sending a 200 OK reponse")
                 response = b"HTTP/1.1 200 OK"
 
             elif method == "GET" and path.startswith("/favicon.ico"):
                 response = b"HTTP/1.1 404 Not Found"
-            
+
             else:
-                warning("could not parse " + colored(first_line, "red") + " from " + client_address[0], True)
+                warning("could not parse " + colored(first_line, "red"), True)
+                warning("sending a 200 OK reponse")
                 response = b"HTTP/1.1 200 OK\r\n\r\n"
 
             client_socket.sendall(response)
