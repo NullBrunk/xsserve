@@ -18,7 +18,7 @@ It enables you to quickly launch a local server and make it publicly accessible,
 There are basically three endpoints:
 | Endpoint             | What does it to          | 
 | :--------------------| :--------------- | 
-| `/FILENAME`          | Serves the file named `FILENAME` from the `files/` directory, like a standard HTTP server.    | 
+| `/FILENAME`          | Serves the file named `FILENAME` in the `files/` directory, like a standard HTTP server.    | 
 | `/?cookie=XXX`       | Only logs the value of `XXX`, useful for testing cookie capture scenarios.    |      
 | `/*`                 | Logs any access to other endpoints directly in your console, giving you full visibility into unexpected requests. |   
 
