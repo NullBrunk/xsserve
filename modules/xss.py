@@ -44,7 +44,7 @@ class XSS:
 
 
         for inet in filter(this.filter_interfaces, interfaces()):
-            iface_ip = ifaddresses("wlo1")[AF_INET][0]["addr"]
+            iface_ip = ifaddresses(inet)[AF_INET][0]["addr"]
             info(f"listening on http://{iface_ip}:{port}/", True)
 
         this.http_launcher(port)
