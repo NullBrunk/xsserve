@@ -27,9 +27,9 @@ Some CLI argument are provided to enhance user experience:
 
 | Argument             | What does it to          | 
 | :--------------------| :--------------- | 
-| `-v`, `--verbose`    | By default the first line of every request, as well as the body are printed. With `-v` you ask to print all the headers sent along with the request    | 
-| `-p`, `--port`       | By default, xsserve listens on a random port chosen between `65000` and `65100`. With `-p` you can customize the port |
-| `-n`, `--ngrok`      | Launch an ngrok server that will listen on the xsserve port. Ngrok will allow you to get a public IP, very useful if you don't have a VPS / don't want to do port forwarding | 
+| `-v`, `--verbose`    | By default, only the first line of every request and the body are printed. With `-v`, all headers sent along with the request are also printed | 
+| `-p`, `--port`       | By default, xsserve listens on a random port between `65000` and `65100`. With `-p` you can specify a custom port |
+| `-n`, `--ngrok`      | Launches an ngrok tunnel that listens on the xsserve port. Ngrok provides a public address, which is useful if you don’t have a VPS or don’t want to set up port forwarding. | 
 
 
 ## ⚒️ Installation
