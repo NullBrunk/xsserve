@@ -34,7 +34,7 @@ Some CLI argument are provided to enhance user experience:
 
 ## ⚒️ Installation
 >[!IMPORTANT]
-> The script requires ngrok
+> The script requires ngrok if you want to use the `-n` option
 
 ```bash
 git clone https://github.com/NullBrunk/xsserve
