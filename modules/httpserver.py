@@ -90,6 +90,7 @@ class HttpServer:
             client_socket.sendall(response)
             client_socket.close()
 
+            print()
             if(sc == 200):
                 info("sending a 200 OK reponse")
                 response = b"HTTP/1.1 200 OK\r\n\r\n"
@@ -97,4 +98,3 @@ class HttpServer:
                 warning("sending a 404 Not Found reponse")
                 response = b"HTTP/1.1 404 Not Found\r\n\r\n"
 
-            print()
