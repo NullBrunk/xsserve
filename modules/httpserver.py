@@ -67,6 +67,7 @@ class HttpServer:
 
             elif method == "GET" and path.startswith("/favicon.ico"):
                 response = b"HTTP/1.1 404 Not Found\r\n\r\n"
+                sc = None
 
             elif method== "POST":
                 info("Received: " + colored(first_line, "red"))
@@ -76,13 +77,11 @@ class HttpServer:
                     body = "empty body"
 
                 info(f"Body: " + colored(body, "red"), True)
-                info("sending a 200 OK reponse")
-                response = b"HTTP/1.1 200 OK\r\n\r\n"
-
+                sc = 200
+                
             else:
                 info("Received: " + colored(first_line, "red"), True)
-                warning("sending a 404 Not Found reponse")
-                response = b"HTTP/1.1 404 Not Found\r\n\r\n"
+                sc = 404
 
             if(this.verbose):
                 to_show = request.strip("\r\n").strip("\r\n").replace(first_line, "")
@@ -90,5 +89,12 @@ class HttpServer:
 
             client_socket.sendall(response)
             client_socket.close()
+
+            if(sc == 200):
+                info("sending a 200 OK reponse")
+                response = b"HTTP/1.1 200 OK\r\n\r\n"
+            elif(sc == 404):
+                warning("sending a 404 Not Found reponse")
+                response = b"HTTP/1.1 404 Not Found\r\n\r\n"
 
             print()
