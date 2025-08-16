@@ -46,10 +46,11 @@ def banner():
 
 if __name__ == "__main__":
     banner()
+    port, launch_ngrok, verbose = parser()
+
     info("Launching XSS.py")
     info("Serving file of: " + "/".join(abspath(__file__).split("/")[:-1]) + "/files")
 
-    port, launch_ngrok, verbose = parser()
     xss = XSS(port, launch_ngrok, verbose)
 
     try:
