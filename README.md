@@ -7,7 +7,7 @@
 ![repo size](https://img.shields.io/github/repo-size/NullBrunk/XSServe?style=for-the-badge)
 </div>
 
-![xsserve](https://github.com/user-attachments/assets/8ed817c2-2cc4-49f7-b86a-9286bfb2664e)
+<img width="1449" height="943" alt="image" src="https://github.com/user-attachments/assets/554aa722-e2b4-4844-a427-6b6832d41067" />
 
 
 ## 🚀 Usage
@@ -23,6 +23,13 @@ There are basically three endpoints:
 
 Ideal for pentesters, security researchers, and cybersecurity enthusiasts who need a lightweight and versatile tool for XSS testing.
 
+Some CLI argument are provided to enhance user experience:
+
+| Argument             | What does it to          | 
+| :--------------------| :--------------- | 
+| `-v`, `--verbose`    | By default the first line of every request, as well as the body are printed. With `-v` you ask to print all the headers sent along with the request    | 
+| `-p`, `--port`       | By default, xsserve listens on a random port chosen between `65000` and `65100`. With `-p` you can customize the port |
+| `-n`, `--ngrok`      | Launch an ngrok server that will listen on the xsserve port. Ngrok will allow you to get a public IP, very useful if you don't have a VPS / don't want to do port forwarding | 
 
 
 ## ⚒️ Installation
