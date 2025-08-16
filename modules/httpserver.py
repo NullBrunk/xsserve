@@ -1,16 +1,16 @@
-from modules.logger import info, warning
+from modules.cli.logger import info, warning, colored
 from mimetypes import guess_type
-from termcolor import colored
 from os.path import abspath
 from os import listdir
 from re import search
 import socket
 
 class HttpServer:
-    def __init__(this, port):
+    def __init__(this, port, verbose):
         this.HOST = '0.0.0.0'
         this.PORT = port
         this.files_path = ""
+        this.verbose = verbose
 
     def extract(this, request):
         # Extract the answered path
@@ -65,19 +65,30 @@ class HttpServer:
                     ).encode('utf-8')
                 info("served file " + colored(path, "red"), True)
 
-            elif method == "GET" and path.startswith("/?cookie"):
-                match = search(r"cookie=([^ ]+)", path)
-                info("received cookie: " + colored(match.group(1), "red"), True)
-                info("sending a 200 OK reponse")
-                response = b"HTTP/1.1 200 OK"
-
             elif method == "GET" and path.startswith("/favicon.ico"):
-                response = b"HTTP/1.1 404 Not Found"
+                response = b"HTTP/1.1 404 Not Found\r\n\r\n"
+
+            elif method== "POST":
+                info("Received: " + colored(first_line, "red"))
+                
+                body = "\r\n\r\n".join(request.split("\r\n\r\n")[1:])
+                if body.strip() == "":
+                    body = "empty body"
+
+                info(f"Body: " + colored(body, "red"), True)
+                info("sending a 200 OK reponse")
+                response = b"HTTP/1.1 200 OK\r\n\r\n"
 
             else:
-                warning("could not parse " + colored(first_line, "red"), True)
+                info("Received: " + colored(first_line, "red"), True)
                 warning("sending a 404 Not Found reponse")
                 response = b"HTTP/1.1 404 Not Found\r\n\r\n"
 
+            if(this.verbose):
+                to_show = request.strip("\r\n").strip("\r\n").replace(first_line, "")
+                print(to_show)
+
             client_socket.sendall(response)
             client_socket.close()
+
+            print()

@@ -24,11 +24,14 @@
 #                                                                              #
 ################################################################################
 
-from modules.logger import info, error 
+from modules.cli.logger import info, error 
+from modules.cli.parser import parser
+
 from modules.ngrok import killer
 from termcolor import colored
 from modules.xss import XSS
-from random import randint
+
+from os.path import abspath
 
 def banner():
     """
@@ -39,16 +42,22 @@ def banner():
         colored(f""" \\ \\/ / __/ __|/ _ \\ '__\\ \\ / / _ \\\n""", "yellow", attrs=["bold"]) +
         colored(f"""  >  <\\__ \\__ \\  __/ |   \\ V /  __/""", "yellow", attrs=["bold"]) + colored("    Simplify XSS exploitation\n", "white") +
         colored(f""" /_/\\_\\___/___/\\___|_|    \\_/ \\___|""", "yellow", attrs=["bold"]) + colored("    (", "white") + colored("@NullBrunk", "red") + colored(")\n", "white")
-    ) 
+    )
 
 if __name__ == "__main__":
     banner()
-    info("launching XSS.py")
-    
-    xss = XSS()
+    info("Launching XSS.py")
+    info("Serving file of: " + "/".join(abspath(__file__).split("/")[:-1]) + "/files")
+
+    port, launch_ngrok, verbose = parser()
+    xss = XSS(port, launch_ngrok, verbose)
+
     try:
-        xss.run(randint(65000, 65500))
+        xss.run()
     except KeyboardInterrupt:
         print()
         error("user exit")
-    killer()
+    
+    # If ngrok was launched, kill it
+    if(launch_ngrok):
+        killer()
